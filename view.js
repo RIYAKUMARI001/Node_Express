@@ -13,6 +13,7 @@
  
  
  //using ejs - we not send(string , html) a response we use render means we are sending  a big files
+ app.use(express.static('public'));//like we have by default name views folder for template that same way we have by default name public folder for static files
  app.set('view engine', 'ejs');
  app.get('/', (req, res) => {
      res.render('home.ejs');
@@ -57,6 +58,8 @@ const filter = (req, res) => {
         res.render('error.ejs');
     }
 }
+
+
 
 
 

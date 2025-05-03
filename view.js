@@ -21,5 +21,42 @@
  //view engine  - mean (template)
  
  app.get('/rolldice',(req,res)=>{
-    res.render('rolldice.ejs');
+    let dice = Math.floor(Math.random() * 6) + 1;
+    res.render('rolldice.ejs', {num :dice});
  })
+
+
+ //instagram page and follower-list
+//  app.get('/instagram/:usename', (req, res) => {
+//     let followers = ["adam", "joe", "Bob"];
+//     let usename = req.params.usename;
+//     res.render('instagram.ejs', { usename, followers });
+// });
+
+app.get('/instagram/:usename', (req, res) => {
+    let {usename} = req.params;
+    let instaData = require('./data.json');
+    let data = instaData[usename];
+    if(data){
+        res.render("instagram.ejs", {data});
+    }
+    else{
+        res.render('error.ejs');
+    }
+        
+});
+// res
+const filter = (req, res) => {
+    let {username} = req.params;
+    let instaData = require('./data.json');
+    let data = instaData[username];
+    if(data){
+        res.render("instagram.ejs", (fetch));
+    }
+    else {
+        res.render('error.ejs');
+    }
+}
+
+
+
